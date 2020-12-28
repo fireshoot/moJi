@@ -11,33 +11,21 @@
     <groupId>com.osyangxin</groupId>
     <artifactId>moji</artifactId>
     <version>1.0.0</version>
-    <name>moji</name>
+    <name>moJi</name>
     <description>个人网站</description>
 
     <properties>
         <java.version>1.8</java.version>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
+    <modules>
+        <module>dao/dao-common</module>
+        <module>base-support/common-support</module>
+        <module>base-support/facade-support</module>
+    </modules>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+    <dependencyManagement>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
+    </dependencyManagement>
 
 </project>
