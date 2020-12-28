@@ -26,6 +26,7 @@
         <module>account-service</module>
         <module>mq-service</module>
         <module>schedule-service</module>
+        <module>manager-service</module>
     </modules>
 
     <dependencyManagement>
