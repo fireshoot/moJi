@@ -9,7 +9,6 @@
         <relativePath>../../pom.xml</relativePath>
     </parent>
     <artifactId>dao-common</artifactId>
-    <version>1.0.0</version>
     <name>dao-common</name>
     <description>dao 映射支持</description>
     <packaging>jar</packaging>

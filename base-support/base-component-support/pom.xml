@@ -9,7 +9,6 @@
         <relativePath>../../pom.xml</relativePath>
     </parent>
     <artifactId>base-component-support</artifactId>
-    <version>1.0.0</version>
     <name>base-component-support</name>
     <description>基础组件支持</description>
     <packaging>jar</packaging>

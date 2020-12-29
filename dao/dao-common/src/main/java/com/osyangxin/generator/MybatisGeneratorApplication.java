@@ -13,6 +13,10 @@ import org.mybatis.generator.internal.DefaultShellCallback;
 @Slf4j
 public class MybatisGeneratorApplication {
 
+
+    /**
+     * 弃用。使用插件生成
+     * */
     public static void main(String[] args) {
         List<String> warnings = new ArrayList<>();
         String xmlPath = String.join(File.separator, Arrays.asList("", "dao", "dao-common", "src", "main", "resources", "generatorConfig.xml"));
