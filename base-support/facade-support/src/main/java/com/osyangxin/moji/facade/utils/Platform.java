@@ -1,5 +1,6 @@
 package com.osyangxin.moji.facade.utils;
 
+import com.osyangxin.moji.common.enums.PlatformType;
 import java.util.regex.Pattern;
 
 public class Platform {
