@@ -1,6 +1,9 @@
 package com.osyangxin.moji.facade.intercepter;
 
 
+import com.alibaba.fastjson.JSON;
+import com.osyangxin.moji.common.bean.User;
+import com.osyangxin.moji.common.bean.UserContextTool;
 import com.osyangxin.moji.common.constants.Constants;
 import com.osyangxin.moji.common.enums.EnvType;
 import com.osyangxin.moji.common.enums.SysErrorCodeEnum;
@@ -113,6 +116,7 @@ public class UrlInterceptor implements HandlerInterceptor {
         //token鉴权
         String values = cacheService.getVal(String.format(Constants.CACHE_TOKEN_USER_PREFIX, token));
         LogTrace.get().setUser(values);
+        UserContextTool.set(JSON.parseObject(values, User.class));
         if (StringUtils.isBlank(values)) {
             throw new ApplicationException(SysErrorCodeEnum.NEED_LOGIN);
         }
