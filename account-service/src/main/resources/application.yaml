@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: ${driving_school_env:dev}
+    active: ${moji_env:dev}
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8

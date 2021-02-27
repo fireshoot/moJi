@@ -8,7 +8,7 @@ import com.osyangxin.moji.common.constants.Constants;
 import com.osyangxin.moji.common.enums.EnvType;
 import com.osyangxin.moji.common.enums.SysErrorCodeEnum;
 import com.osyangxin.moji.common.exception.ApplicationException;
-import com.osyangxin.moji.component.service.CacheService;
+import com.osyangxin.moji.service.CacheService;
 import com.osyangxin.moji.facade.annotation.AnonymousSupport;
 import com.osyangxin.moji.facade.filter.RequestWrapper;
 import com.osyangxin.moji.facade.log.LogTrace;
@@ -41,15 +41,10 @@ public class UrlInterceptor implements HandlerInterceptor {
 
     private static final Logger logger = LoggerFactory.getLogger(UrlInterceptor.class);
 
-    private static final int SESSION_TIMEOUT = 900;
-
     private static final String MANAGE_COOKIE_KEY = "Token";
 
     @Autowired
     private CacheService cacheService;
-
-    @Autowired
-    private ApplicationContext applicationContext;
 
     /**
      * 当前环境信息
@@ -83,7 +78,7 @@ public class UrlInterceptor implements HandlerInterceptor {
         //匿名访问
         if (anonymous != null) {
             if (StringUtils.isNotBlank(token)) {
-                String values = cacheService.getVal(String.format(Constants.CACHE_TOKEN_USER_PREFIX, token));
+                String values = cacheService.getVal(String.format(Constants.CACHE_USER_SESSION_LOGIN_PREFIX, token));
                 LogTrace.get().setUser(values);
                 if (StringUtils.isNotBlank(values)) {
                     StringTokenizer st = new StringTokenizer(values, Constants.DOT);
@@ -94,27 +89,8 @@ public class UrlInterceptor implements HandlerInterceptor {
             return true;
         }
 
-
-
-        //cookies鉴权
-//        if (StringUtils.isBlank(token)) {
-//            HttpSession session = httpServletRequest.getSession();
-//            User user = (User)session.getAttribute(Constants.SESSION_USER_INFO);
-//            if (user == null) {
-//                String cookieToken = getCookieToken(httpServletRequest);
-//                user = cacheService.getVal(String.format(Constants.CACHE_USER_SESSION_LOGIN_PREFIX, cookieToken), User.class);
-//                logger.info("session is null，cookieToken: {} user: {}", cookieToken, user);
-//                if (user == null) {
-//                    throw new ApplicationException(SysStubInfo.NEED_LOGIN);
-//                }
-//                session.setAttribute(Constants.SESSION_USER_INFO, user);
-//            }
-//            LogTrace.get().setUser(user.getUserId() + "," + user.getUsername());
-//            return true;
-//        }
-
         //token鉴权
-        String values = cacheService.getVal(String.format(Constants.CACHE_TOKEN_USER_PREFIX, token));
+        String values = cacheService.getVal(String.format(Constants.CACHE_USER_SESSION_LOGIN_PREFIX, token));
         LogTrace.get().setUser(values);
         UserContextTool.set(JSON.parseObject(values, User.class));
         if (StringUtils.isBlank(values)) {

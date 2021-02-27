@@ -22,10 +22,19 @@ public class Constants {
     public static final String CACHE_USER_TOKEN_LOGIN_PREFIX = "login:user:token:%s:%s";
 
     //后台管理图形验证码
-    public static final String CACHE_LOGIN_CAPTCHA_PREFIX = "captcha:login:%s";
+    public static final String CACHE_LOGIN_CAPTCHA_PREFIX = "moji:captcha:login:%s";
+
+    //存放后台session
+    public static final String CACHE_USER_SESSION_LOGIN_PREFIX = "moji:login:admin:token:%s";
+
+
+    //存放百度统计accessToken
+    public static final String API_AUTH_BAIDU_STATISTIC_CACHE_PREFIX = "moji:api:auth:baidu:statistic:%s";
 
 
 
+
+    public static final String SESSION_ADMIN_INFO = "admin";
     public static final String SESSION_USER_INFO = "user";
     public static final String HEADER_MEMBER_TOKEN = "token";
     public static final String HEADER_USER_AGENT = "User-Agent";
@@ -42,4 +51,5 @@ public class Constants {
     public static final String CONDITION_LE = "<=";
     public static final String DOT = ",";
 
+    public static final String SUPPLIER_CODE = "moji:generator:code";
 }

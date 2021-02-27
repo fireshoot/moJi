@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.osyangxin.dao.mapper.SysAuthMapper">
+  <resultMap id="BaseResultMap" type="com.osyangxin.dao.model.SysAuth">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="uri" jdbcType="VARCHAR" property="uri" />
+    <result column="status" jdbcType="SMALLINT" property="status" />
+    <result column="type" jdbcType="SMALLINT" property="type" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="deleted" jdbcType="TINYINT" property="deleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, uri, status, type, description, parent_id, created_at, updated_at, deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_auth
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_auth
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.osyangxin.dao.model.SysAuth">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sys_auth (name, uri, status, 
+      type, description, parent_id, 
+      created_at, updated_at, deleted
+      )
+    values (#{name,jdbcType=VARCHAR}, #{uri,jdbcType=VARCHAR}, #{status,jdbcType=SMALLINT}, 
+      #{type,jdbcType=SMALLINT}, #{description,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, 
+      #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, #{deleted,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.osyangxin.dao.model.SysAuth">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sys_auth
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        name,
+      </if>
+      <if test="uri != null">
+        uri,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="uri != null">
+        #{uri,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=SMALLINT},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.osyangxin.dao.model.SysAuth">
+    update sys_auth
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="uri != null">
+        uri = #{uri,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=SMALLINT},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.osyangxin.dao.model.SysAuth">
+    update sys_auth
+    set name = #{name,jdbcType=VARCHAR},
+      uri = #{uri,jdbcType=VARCHAR},
+      status = #{status,jdbcType=SMALLINT},
+      type = #{type,jdbcType=SMALLINT},
+      description = #{description,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      deleted = #{deleted,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="getByConditions" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from sys_auth
+    <where>
+      <choose>
+        <when test="conditions!= null">
+          <foreach close="" collection="conditions" index="key" item="value" open="" separator="AND">
+            ${key}=#{value}
+          </foreach>
+        </when>
+      </choose>
+    </where>
+  </select>
+  <select id="getByConditionList" resultMap="BaseResultMap" parameterType="list">
+    select
+    <include refid="Base_Column_List"/>
+    from sys_auth
+    <where>
+      <choose>
+        <when test="conditions != null and conditions.size() > 0">
+          <foreach item="item" collection="conditions"
+                   open="" separator="AND" close="">
+            <choose>
+              <when test="item.opt == 'locate'">
+                locate(#{item.value}, ${item.key}) > 0
+              </when>
+              <when test="item.opt == 'in'">
+                ${item.key} in
+                <foreach item="itemIn" collection="item.value" open="(" separator="," close=")">
+                  #{itemIn}
+                </foreach>
+              </when>
+              <otherwise>
+                ${item.key} ${item.opt} #{item.value}
+              </otherwise>
+            </choose>
+          </foreach>
+        </when>
+      </choose>
+    </where>
+  </select>
+  <select id="getSortedResultByConditionList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from sys_auth
+    <where>
+      <choose>
+        <when test="conditions != null and conditions.size() > 0">
+          <foreach item="item" collection="conditions"
+                   open="" separator="AND" close="">
+            <choose>
+              <when test="item.opt != 'in'">
+                ${item.key} ${item.opt} #{item.value}
+              </when>
+              <otherwise>
+                ${item.key} ${item.opt} ${item.value}
+              </otherwise>
+            </choose>
+          </foreach>
+        </when>
+      </choose>
+    </where>
+    <choose>
+      <when test="sorter !=null">
+        order by ${sorter.field} ${sorter.sortType}
+      </when>
+    </choose>
+  </select>
+  <select id="getByIn" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    from sys_auth
+    <where>
+      <choose>
+        <when test="field != null">
+          ${field} in
+          <foreach item="item" index="index" collection="set" open="(" separator="," close=")">
+            #{item}
+          </foreach>
+        </when>
+      </choose>
+    </where>
+  </select>
+
+  <select id="getSysAuthOrdinal" resultType="com.osyangxin.dao.model.SysAuthOrdinalView" >
+    select sa.id authId, sa.name, sa.uri, sa.status, sa.type, sa.description, sa.parent_id parentId, b.name parentName,
+           sao.ordinal, sao.level
+    from sys_auth sa left join sys_auth b on b.id = sa.parent_id
+           left join sys_auth_ordinal sao on sao.auth_id = sa.id
+    where sa.deleted = 0
+    order by ordinal asc
+  </select>
+
+  <select id="getAuthByUserId" resultType="com.osyangxin.dao.model.SysAuthOrdinalView">
+    select auth.uri, auth.name, role.type
+    from sys_user_role user_role
+           left join sys_role_auth role_auth on role_auth.role_id = user_role.role_id
+           left join sys_auth auth on auth.id = role_auth.auth_id
+           left join sys_role role on role.id = user_role.role_id
+    WHERE user_role.user_id = #{id} and auth.status = 0 and  auth.deleted = 0
+  </select>
+
+  <update id="batchUpdateStatusByIds">
+    update sys_auth
+    set `status`= #{status}, updated_at = #{updatedAt}
+    where id in
+    <foreach item="item" index="index" collection="idList" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </update>
+
+  <delete id="batchDelByAuthIds">
+    DELETE auth.*, ordinal.*
+    FROM
+    sys_auth AS auth,
+    sys_auth_ordinal AS ordinal
+    WHERE
+    auth.id = ordinal.auth_id
+    AND auth.id in
+    <foreach item="item" index="index" collection="authIds" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+
+  <select id="getMinOrdinalForDelIds" resultType="integer">
+    select min(ordinal) from sys_auth_ordinal where auth_id in
+    <foreach item="item" collection="set" separator="," open="(" close=")">
+      #{item}
+    </foreach>
+  </select>
+</mapper>

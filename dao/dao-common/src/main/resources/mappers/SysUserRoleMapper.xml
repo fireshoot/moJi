@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.osyangxin.dao.mapper.SysUserRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.osyangxin.dao.model.SysUserRole" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="role_id" property="roleId" jdbcType="INTEGER" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+    <result column="deleted" property="deleted" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, role_id, created_at, updated_at, deleted
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user_role
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sys_user_role
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.osyangxin.dao.model.SysUserRole" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sys_user_role (user_id, role_id, created_at, 
+      updated_at, deleted)
+    values (#{userId,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}, #{createdAt,jdbcType=TIMESTAMP}, 
+      #{updatedAt,jdbcType=TIMESTAMP}, #{deleted,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.osyangxin.dao.model.SysUserRole" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sys_user_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="roleId != null" >
+        role_id,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="updatedAt != null" >
+        updated_at,
+      </if>
+      <if test="deleted != null" >
+        deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null" >
+        #{deleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.osyangxin.dao.model.SysUserRole" >
+    update sys_user_role
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="roleId != null" >
+        role_id = #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null" >
+        deleted = #{deleted,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.osyangxin.dao.model.SysUserRole" >
+    update sys_user_role
+    set user_id = #{userId,jdbcType=INTEGER},
+      role_id = #{roleId,jdbcType=INTEGER},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      deleted = #{deleted,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getByConditions" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from sys_user_role
+    <where>
+      <choose>
+        <when test="conditions!= null">
+          <foreach close="" collection="conditions" index="key" item="value" open="" separator="AND">
+            ${key}=#{value}
+          </foreach>
+        </when>
+      </choose>
+    </where>
+  </select>
+  <select id="getByConditionList" resultMap="BaseResultMap" parameterType="list">
+    select
+    <include refid="Base_Column_List"/>
+    from sys_user_role
+    <where>
+      <choose>
+        <when test="conditions != null and conditions.size() > 0">
+          <foreach item="item" collection="conditions"
+                   open="" separator="AND" close="">
+            <choose>
+              <when test="item.opt == 'locate'">
+                locate(#{item.value}, ${item.key}) > 0
+              </when>
+              <when test="item.opt == 'in'">
+                ${item.key} in
+                <foreach item="itemIn" collection="item.value" open="(" separator="," close=")">
+                  #{itemIn}
+                </foreach>
+              </when>
+              <otherwise>
+                ${item.key} ${item.opt} #{item.value}
+              </otherwise>
+            </choose>
+          </foreach>
+        </when>
+      </choose>
+    </where>
+  </select>
+  <select id="getSortedResultByConditionList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from sys_user_role
+    <where>
+      <choose>
+        <when test="conditions != null and conditions.size() > 0">
+          <foreach item="item" collection="conditions"
+                   open="" separator="AND" close="">
+            <choose>
+              <when test="item.opt == 'locate'">
+                locate(#{item.value}, ${item.key}) > 0
+              </when>
+              <when test="item.opt == 'in'">
+                ${item.key} in
+                <foreach item="itemIn" collection="item.value" open="(" separator="," close=")">
+                  #{itemIn}
+                </foreach>
+              </when>
+              <otherwise>
+                ${item.key} ${item.opt} #{item.value}
+              </otherwise>
+            </choose>
+          </foreach>
+        </when>
+      </choose>
+    </where>
+    <choose>
+      <when test="sorter !=null">
+        order by ${sorter.field} ${sorter.sortType}
+      </when>
+    </choose>
+  </select>
+  <select id="getByIn" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    from sys_user_role
+    <where>
+      <choose>
+        <when test="field != null">
+          ${field} in
+          <foreach item="item" index="index" collection="set" open="(" separator="," close=")">
+            #{item}
+          </foreach>
+        </when>
+      </choose>
+    </where>
+  </select>
+
+</mapper>
