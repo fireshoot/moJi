@@ -1,7 +1,5 @@
 package com.osyangxin.moji.service;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.osyangxin.dao.mapper.AccountInfoMapper;
 import com.osyangxin.dao.mapper.SysAuthMapper;
 import com.osyangxin.dao.mapper.SysUserMapper;
@@ -116,7 +114,7 @@ public class LoginService {
         info.setAccountStatus(YesNoEnum.Y.getStatus());
         String salt = String.valueOf(info.getCreateTime().getTime());
         info.setPassword(HashUtil.encryptUserPasswordByMD5(userRegisterFrom.getPassword(), salt));
-        accountInfoMapper.insert(info);
+//        accountInfoMapper.insert(info);
         return true;
     }
 
@@ -150,14 +148,14 @@ public class LoginService {
     public String userLogin(LoginForm input) {
         checkoutCaptcha(input);
 
-        LambdaQueryWrapper<AccountInfo> wrapper = Wrappers.lambdaQuery();
+        /*LambdaQueryWrapper<AccountInfo> wrapper = Wrappers.lambdaQuery();
         wrapper.and(wrapperItem -> wrapperItem.eq(AccountInfo::getAccountName, input.getKeywords())
                 .or()
                 .eq(AccountInfo::getAccountPhone, input.getKeywords())
                 .or()
                 .eq(AccountInfo::getAccountEmail, input.getKeywords())
-        );
-        AccountInfo accountInfo = accountInfoMapper.selectOne(wrapper);
+        );*/
+        AccountInfo accountInfo = null;//accountInfoMapper.selectOne(wrapper);
         if (accountInfo == null) {
             throw new ApplicationException(RetStubDetail.USER_NOT_FOUND);
         }
@@ -246,7 +244,7 @@ public class LoginService {
     public boolean userResetPassword(ResetPasswordForm passwordForm, AccountInfo accountInfo) {
         Date now = new Date();
 
-        AccountInfo userFromDb = accountInfoMapper.selectById(accountInfo.getId());
+        AccountInfo userFromDb = null;//accountInfoMapper.selectById(accountInfo.getId());
         if (userFromDb == null) {
             throw new ApplicationException(RetStubDetail.USER_NOT_FOUND);
         }
@@ -264,7 +262,7 @@ public class LoginService {
         userForDb.setPassword(newPassword);
         userForDb.setUpdateTime(now);
 
-        accountInfoMapper.updateById(userForDb);
+       // accountInfoMapper.updateById(userForDb);
         return true;
     }
 

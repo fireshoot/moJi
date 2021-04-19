@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @time 2021/2/27  10:35
  */
 @RestController
-@RequestMapping("/account")
+@RequestMapping("/member")
 public class AccountController {
 
     @Resource
@@ -26,6 +26,12 @@ public class AccountController {
     @PostMapping("/captcha")
     public void sendCaptcha(HttpServletRequest request, HttpServletResponse response) throws IOException {
         captchaService.createImage(request, response);
+    }
+
+    @AnonymousSupport
+    @PostMapping("/checkLogin")
+    public String member(String token) {
+        return "1";
     }
 
 }

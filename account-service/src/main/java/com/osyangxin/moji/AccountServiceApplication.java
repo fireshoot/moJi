@@ -8,7 +8,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 
 @SpringBootApplication(exclude = {PageHelperAutoConfiguration.class})
 @ServletComponentScan
-@MapperScan("com.osyangxin.*.dao.mapper")
+@MapperScan("com.osyangxin.dao.mapper")
 public class AccountServiceApplication {
 
     public static void main(String[] args) {

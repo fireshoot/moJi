@@ -1,44 +1,33 @@
-# Created by .ignore support plugin (hsz.mobi)
-### Example user template template
-### Example user template
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
 
-# IntelliJ project files
-out
-gen
-
-# 忽略匹配下列规则
-### gradle ###
-.gradle
-/build/
-!gradle/wrapper/gradle-wrapper.jar
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
 
 ### IntelliJ IDEA ###
 .idea
 *.iws
 *.iml
 *.ipr
-*.lock
-rebel.xml
 
-### temp ignore ###
-*.cache
-*.diff
-*.patch
-*.tmp
-*.java~
-*.properties~
-*.xml~
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
 
-### maven ###
-target/
-*.war
-*.ear
-*.zip
-*.tar
-*.tar.gz
-
-### node ###
-node_modules
-
-.DS_Store
-!/pom.xml
+### VS Code ###
+.vscode/
