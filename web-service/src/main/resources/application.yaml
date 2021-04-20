@@ -1,0 +1,27 @@
+spring:
+  profiles:
+    active: ${moji_env:dev}
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+server:
+  port: 6662
+  tomcat:
+    uri-encoding: utf-8
+    accept-count: 1000
+    max-connections: 500
+    threads:
+      max: 500
+      min-spare: 50
+mybatis:
+  mapper-locations: classpath:mappers/*.xml
+  config-location: classpath:mybatis-config.xml
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    auto-mapping-behavior: full
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:mappers/*.xml
+log:
+  level: info
+  moduleName: manage
