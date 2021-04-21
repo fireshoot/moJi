@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.osyangxin.dao.mapper.ProductOpsRecordHistoryInfoMapper">
+  <resultMap id="BaseResultMap" type="com.osyangxin.dao.model.ProductOpsRecordHistoryInfo">
+    <!--@mbg.generated-->
+    <!--@Table product_ops_record_history_info-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="product_id" jdbcType="BIGINT" property="productId" />
+    <result column="ops_user" jdbcType="INTEGER" property="opsUser" />
+    <result column="ops_record" jdbcType="CHAR" property="opsRecord" />
+    <result column="change_before" jdbcType="DECIMAL" property="changeBefore" />
+    <result column="change_after" jdbcType="DECIMAL" property="changeAfter" />
+    <result column="add_dt" jdbcType="TIMESTAMP" property="addDt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, product_id, ops_user, ops_record, change_before, change_after, add_dt
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from product_ops_record_history_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from product_ops_record_history_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.osyangxin.dao.model.ProductOpsRecordHistoryInfo">
+    <!--@mbg.generated-->
+    insert into product_ops_record_history_info (id, product_id, ops_user, 
+      ops_record, change_before, change_after, 
+      add_dt)
+    values (#{id,jdbcType=BIGINT}, #{productId,jdbcType=BIGINT}, #{opsUser,jdbcType=INTEGER}, 
+      #{opsRecord,jdbcType=CHAR}, #{changeBefore,jdbcType=DECIMAL}, #{changeAfter,jdbcType=DECIMAL}, 
+      #{addDt,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.osyangxin.dao.model.ProductOpsRecordHistoryInfo">
+    <!--@mbg.generated-->
+    insert into product_ops_record_history_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="opsUser != null">
+        ops_user,
+      </if>
+      <if test="opsRecord != null">
+        ops_record,
+      </if>
+      <if test="changeBefore != null">
+        change_before,
+      </if>
+      <if test="changeAfter != null">
+        change_after,
+      </if>
+      <if test="addDt != null">
+        add_dt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="opsUser != null">
+        #{opsUser,jdbcType=INTEGER},
+      </if>
+      <if test="opsRecord != null">
+        #{opsRecord,jdbcType=CHAR},
+      </if>
+      <if test="changeBefore != null">
+        #{changeBefore,jdbcType=DECIMAL},
+      </if>
+      <if test="changeAfter != null">
+        #{changeAfter,jdbcType=DECIMAL},
+      </if>
+      <if test="addDt != null">
+        #{addDt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.osyangxin.dao.model.ProductOpsRecordHistoryInfo">
+    <!--@mbg.generated-->
+    update product_ops_record_history_info
+    <set>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="opsUser != null">
+        ops_user = #{opsUser,jdbcType=INTEGER},
+      </if>
+      <if test="opsRecord != null">
+        ops_record = #{opsRecord,jdbcType=CHAR},
+      </if>
+      <if test="changeBefore != null">
+        change_before = #{changeBefore,jdbcType=DECIMAL},
+      </if>
+      <if test="changeAfter != null">
+        change_after = #{changeAfter,jdbcType=DECIMAL},
+      </if>
+      <if test="addDt != null">
+        add_dt = #{addDt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.osyangxin.dao.model.ProductOpsRecordHistoryInfo">
+    <!--@mbg.generated-->
+    update product_ops_record_history_info
+    set product_id = #{productId,jdbcType=BIGINT},
+      ops_user = #{opsUser,jdbcType=INTEGER},
+      ops_record = #{opsRecord,jdbcType=CHAR},
+      change_before = #{changeBefore,jdbcType=DECIMAL},
+      change_after = #{changeAfter,jdbcType=DECIMAL},
+      add_dt = #{addDt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,6 +1,7 @@
 package com.osyangxin.moji.service;
 
 
+import com.osyangxin.dao.model.ProductInfo;
 import com.osyangxin.moji.bean.ResultPageView;
 import com.osyangxin.moji.model.vo.Product;
 import com.osyangxin.moji.model.vo.TbPanel;
@@ -72,15 +73,17 @@ public interface ContentService {
 //    ProductDet getProductDet(Long id);
 
     /**
-     * 分页多条件获取全部商品
-     * @param page
-     * @param size
-     * @param sort
-     * @param priceGt
-     * @param priceLte
-     * @return
-     */
-    ResultPageView<Product> getAllProduct(int page, int size, String sort, Long cid, int priceGt, int priceLte);
+     * 方法实现说明
+     * @param sort :
+     * @param size :
+     * @param cid :
+     * @param priceGt:
+     * @param priceLte :
+     * @return :
+     * @author      yangxin
+     * @date        2021/4/21 21:47
+    */
+    ResultPageView<ProductInfo>  getAllProduct(int page, int size, String sort, Long cid, Integer priceGt, Integer priceLte);
 
    /* *//**
      * 获取首页缓存

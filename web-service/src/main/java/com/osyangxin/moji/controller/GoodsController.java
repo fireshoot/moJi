@@ -1,5 +1,6 @@
 package com.osyangxin.moji.controller;
 
+import com.osyangxin.dao.model.ProductInfo;
 import com.osyangxin.moji.bean.ResultPageView;
 import com.osyangxin.moji.model.vo.Product;
 import com.osyangxin.moji.model.vo.TbPanel;
@@ -53,16 +54,17 @@ public class GoodsController {
     }*/
 
     @GetMapping(value = "/allGoods")
-    public ResultPageView<Product> getAllProduct(@RequestParam(defaultValue = "1") int page,
-                                          @RequestParam(defaultValue = "20") int size,
-                                          @RequestParam(defaultValue = "") String sort,
-                                          @RequestParam(defaultValue = "") Long cid,
-                                          @RequestParam(defaultValue = "-1") int priceGt,
-                                          @RequestParam(defaultValue = "-1") int priceLte){
-        return contentService.getAllProduct(page,size,sort,cid,priceGt,priceLte);
+    public ResultPageView<ProductInfo> getAllProduct(@RequestParam(defaultValue = "1") int page,
+                                                     @RequestParam(defaultValue = "20") int size,
+                                                     String sort,
+                                                     Long cid,
+                                                     Integer priceGt,
+                                                     Integer priceLte) {
+        return contentService.getAllProduct(page, size, sort, cid, priceGt, priceLte);
     }
+
     @GetMapping(value = "/home")
-    public List<TbPanel> getProductHome(){
+    public List<TbPanel> getProductHome() {
         return contentService.getHome();
     }
 

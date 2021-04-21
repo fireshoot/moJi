@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.osyangxin.dao.mapper.ProductInfoMapper">
+  <resultMap id="BaseResultMap" type="com.osyangxin.dao.model.ProductInfo">
+    <!--@mbg.generated-->
+    <!--@Table product_info-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="promotion_title" jdbcType="VARCHAR" property="promotionTitle" />
+    <result column="unit" jdbcType="VARCHAR" property="unit" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="introduction" jdbcType="VARCHAR" property="introduction" />
+    <result column="demo_url" jdbcType="VARCHAR" property="demoUrl" />
+    <result column="thumbnail_url" jdbcType="VARCHAR" property="thumbnailUrl" />
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
+    <result column="first_category" jdbcType="BIGINT" property="firstCategory" />
+    <result column="second_category" jdbcType="BIGINT" property="secondCategory" />
+    <result column="third_category" jdbcType="BIGINT" property="thirdCategory" />
+    <result column="purchase_price" jdbcType="DECIMAL" property="purchasePrice" />
+    <result column="sale_price" jdbcType="DECIMAL" property="salePrice" />
+    <result column="market_price" jdbcType="DECIMAL" property="marketPrice" />
+    <result column="service_charges" jdbcType="INTEGER" property="serviceCharges" />
+    <result column="stocks" jdbcType="INTEGER" property="stocks" />
+    <result column="sold_count" jdbcType="INTEGER" property="soldCount" />
+    <result column="default_sold_count" jdbcType="INTEGER" property="defaultSoldCount" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="specification" jdbcType="VARCHAR" property="specification" />
+    <result column="on_shelve" jdbcType="BOOLEAN" property="onShelve" />
+    <result column="recommend_product_id" jdbcType="INTEGER" property="recommendProductId" />
+    <result column="is_important" jdbcType="BOOLEAN" property="isImportant" />
+    <result column="editer" jdbcType="VARCHAR" property="editer" />
+    <result column="author" jdbcType="VARCHAR" property="author" />
+    <result column="is_deleted" jdbcType="BOOLEAN" property="isDeleted" />
+    <result column="add_dt" jdbcType="TIMESTAMP" property="addDt" />
+    <result column="add_user_id" jdbcType="INTEGER" property="addUserId" />
+    <result column="update_dt" jdbcType="TIMESTAMP" property="updateDt" />
+    <result column="add_update_id" jdbcType="INTEGER" property="addUpdateId" />
+    <result column="last_syndt" jdbcType="TIMESTAMP" property="lastSyndt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, `name`, promotion_title, unit, code, introduction, demo_url, thumbnail_url, description, 
+    first_category, second_category, third_category, purchase_price, sale_price, market_price, 
+    service_charges, stocks, sold_count, default_sold_count, `type`, specification, on_shelve, 
+    recommend_product_id, is_important, editer, author, is_deleted, add_dt, add_user_id, 
+    update_dt, add_update_id, last_syndt
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from product_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <select id="selectByCondition" resultType="com.osyangxin.dao.model.ProductInfo">
+    select <include refid="Base_Column_List"/>
+    from product_info
+    <where>
+      <if test="cid != null">
+        and id = #{cid,jdbcType=BIGINT}
+      </if>
+      <if test="priceGt != null">
+        and sale_price >= #{priceGt}
+      </if>
+      <if test="priceLte != null">
+        and sale_price &lt;= #{priceLte}
+      </if>
+    </where>
+    <if test="sort != null and sort != ''">
+      <if test="sort == 1">
+        order by sale_price asc
+      </if>
+      <if test="sort == -1">
+        order by sale_price desc
+      </if>
+      <if test="sort != -1 and sort != 1">
+        order by add_dt desc
+      </if>
+    </if>
+
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from product_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.osyangxin.dao.model.ProductInfo">
+    <!--@mbg.generated-->
+    insert into product_info (id, `name`, promotion_title, 
+      unit, code, introduction, 
+      demo_url, thumbnail_url, description, 
+      first_category, second_category, third_category, 
+      purchase_price, sale_price, market_price, 
+      service_charges, stocks, sold_count, 
+      default_sold_count, `type`, specification, 
+      on_shelve, recommend_product_id, is_important, 
+      editer, author, is_deleted, 
+      add_dt, add_user_id, update_dt, 
+      add_update_id, last_syndt)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{promotionTitle,jdbcType=VARCHAR}, 
+      #{unit,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR}, 
+      #{demoUrl,jdbcType=VARCHAR}, #{thumbnailUrl,jdbcType=VARCHAR}, #{description,jdbcType=LONGVARCHAR}, 
+      #{firstCategory,jdbcType=BIGINT}, #{secondCategory,jdbcType=BIGINT}, #{thirdCategory,jdbcType=BIGINT}, 
+      #{purchasePrice,jdbcType=DECIMAL}, #{salePrice,jdbcType=DECIMAL}, #{marketPrice,jdbcType=DECIMAL}, 
+      #{serviceCharges,jdbcType=INTEGER}, #{stocks,jdbcType=INTEGER}, #{soldCount,jdbcType=INTEGER}, 
+      #{defaultSoldCount,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{specification,jdbcType=VARCHAR}, 
+      #{onShelve,jdbcType=BOOLEAN}, #{recommendProductId,jdbcType=INTEGER}, #{isImportant,jdbcType=BOOLEAN}, 
+      #{editer,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, #{isDeleted,jdbcType=BOOLEAN}, 
+      #{addDt,jdbcType=TIMESTAMP}, #{addUserId,jdbcType=INTEGER}, #{updateDt,jdbcType=TIMESTAMP}, 
+      #{addUpdateId,jdbcType=INTEGER}, #{lastSyndt,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.osyangxin.dao.model.ProductInfo">
+    <!--@mbg.generated-->
+    insert into product_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="promotionTitle != null">
+        promotion_title,
+      </if>
+      <if test="unit != null">
+        unit,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="introduction != null">
+        introduction,
+      </if>
+      <if test="demoUrl != null">
+        demo_url,
+      </if>
+      <if test="thumbnailUrl != null">
+        thumbnail_url,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="firstCategory != null">
+        first_category,
+      </if>
+      <if test="secondCategory != null">
+        second_category,
+      </if>
+      <if test="thirdCategory != null">
+        third_category,
+      </if>
+      <if test="purchasePrice != null">
+        purchase_price,
+      </if>
+      <if test="salePrice != null">
+        sale_price,
+      </if>
+      <if test="marketPrice != null">
+        market_price,
+      </if>
+      <if test="serviceCharges != null">
+        service_charges,
+      </if>
+      <if test="stocks != null">
+        stocks,
+      </if>
+      <if test="soldCount != null">
+        sold_count,
+      </if>
+      <if test="defaultSoldCount != null">
+        default_sold_count,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="specification != null">
+        specification,
+      </if>
+      <if test="onShelve != null">
+        on_shelve,
+      </if>
+      <if test="recommendProductId != null">
+        recommend_product_id,
+      </if>
+      <if test="isImportant != null">
+        is_important,
+      </if>
+      <if test="editer != null">
+        editer,
+      </if>
+      <if test="author != null">
+        author,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="addDt != null">
+        add_dt,
+      </if>
+      <if test="addUserId != null">
+        add_user_id,
+      </if>
+      <if test="updateDt != null">
+        update_dt,
+      </if>
+      <if test="addUpdateId != null">
+        add_update_id,
+      </if>
+      <if test="lastSyndt != null">
+        last_syndt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="promotionTitle != null">
+        #{promotionTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null">
+        #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="demoUrl != null">
+        #{demoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbnailUrl != null">
+        #{thumbnailUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="firstCategory != null">
+        #{firstCategory,jdbcType=BIGINT},
+      </if>
+      <if test="secondCategory != null">
+        #{secondCategory,jdbcType=BIGINT},
+      </if>
+      <if test="thirdCategory != null">
+        #{thirdCategory,jdbcType=BIGINT},
+      </if>
+      <if test="purchasePrice != null">
+        #{purchasePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="salePrice != null">
+        #{salePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="marketPrice != null">
+        #{marketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="serviceCharges != null">
+        #{serviceCharges,jdbcType=INTEGER},
+      </if>
+      <if test="stocks != null">
+        #{stocks,jdbcType=INTEGER},
+      </if>
+      <if test="soldCount != null">
+        #{soldCount,jdbcType=INTEGER},
+      </if>
+      <if test="defaultSoldCount != null">
+        #{defaultSoldCount,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="specification != null">
+        #{specification,jdbcType=VARCHAR},
+      </if>
+      <if test="onShelve != null">
+        #{onShelve,jdbcType=BOOLEAN},
+      </if>
+      <if test="recommendProductId != null">
+        #{recommendProductId,jdbcType=INTEGER},
+      </if>
+      <if test="isImportant != null">
+        #{isImportant,jdbcType=BOOLEAN},
+      </if>
+      <if test="editer != null">
+        #{editer,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null">
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=BOOLEAN},
+      </if>
+      <if test="addDt != null">
+        #{addDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUserId != null">
+        #{addUserId,jdbcType=INTEGER},
+      </if>
+      <if test="updateDt != null">
+        #{updateDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUpdateId != null">
+        #{addUpdateId,jdbcType=INTEGER},
+      </if>
+      <if test="lastSyndt != null">
+        #{lastSyndt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.osyangxin.dao.model.ProductInfo">
+    <!--@mbg.generated-->
+    update product_info
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="promotionTitle != null">
+        promotion_title = #{promotionTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null">
+        introduction = #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="demoUrl != null">
+        demo_url = #{demoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbnailUrl != null">
+        thumbnail_url = #{thumbnailUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="firstCategory != null">
+        first_category = #{firstCategory,jdbcType=BIGINT},
+      </if>
+      <if test="secondCategory != null">
+        second_category = #{secondCategory,jdbcType=BIGINT},
+      </if>
+      <if test="thirdCategory != null">
+        third_category = #{thirdCategory,jdbcType=BIGINT},
+      </if>
+      <if test="purchasePrice != null">
+        purchase_price = #{purchasePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="salePrice != null">
+        sale_price = #{salePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="marketPrice != null">
+        market_price = #{marketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="serviceCharges != null">
+        service_charges = #{serviceCharges,jdbcType=INTEGER},
+      </if>
+      <if test="stocks != null">
+        stocks = #{stocks,jdbcType=INTEGER},
+      </if>
+      <if test="soldCount != null">
+        sold_count = #{soldCount,jdbcType=INTEGER},
+      </if>
+      <if test="defaultSoldCount != null">
+        default_sold_count = #{defaultSoldCount,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="specification != null">
+        specification = #{specification,jdbcType=VARCHAR},
+      </if>
+      <if test="onShelve != null">
+        on_shelve = #{onShelve,jdbcType=BOOLEAN},
+      </if>
+      <if test="recommendProductId != null">
+        recommend_product_id = #{recommendProductId,jdbcType=INTEGER},
+      </if>
+      <if test="isImportant != null">
+        is_important = #{isImportant,jdbcType=BOOLEAN},
+      </if>
+      <if test="editer != null">
+        editer = #{editer,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null">
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=BOOLEAN},
+      </if>
+      <if test="addDt != null">
+        add_dt = #{addDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUserId != null">
+        add_user_id = #{addUserId,jdbcType=INTEGER},
+      </if>
+      <if test="updateDt != null">
+        update_dt = #{updateDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUpdateId != null">
+        add_update_id = #{addUpdateId,jdbcType=INTEGER},
+      </if>
+      <if test="lastSyndt != null">
+        last_syndt = #{lastSyndt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.osyangxin.dao.model.ProductInfo">
+    <!--@mbg.generated-->
+    update product_info
+    set `name` = #{name,jdbcType=VARCHAR},
+      promotion_title = #{promotionTitle,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      introduction = #{introduction,jdbcType=VARCHAR},
+      demo_url = #{demoUrl,jdbcType=VARCHAR},
+      thumbnail_url = #{thumbnailUrl,jdbcType=VARCHAR},
+      description = #{description,jdbcType=LONGVARCHAR},
+      first_category = #{firstCategory,jdbcType=BIGINT},
+      second_category = #{secondCategory,jdbcType=BIGINT},
+      third_category = #{thirdCategory,jdbcType=BIGINT},
+      purchase_price = #{purchasePrice,jdbcType=DECIMAL},
+      sale_price = #{salePrice,jdbcType=DECIMAL},
+      market_price = #{marketPrice,jdbcType=DECIMAL},
+      service_charges = #{serviceCharges,jdbcType=INTEGER},
+      stocks = #{stocks,jdbcType=INTEGER},
+      sold_count = #{soldCount,jdbcType=INTEGER},
+      default_sold_count = #{defaultSoldCount,jdbcType=INTEGER},
+      `type` = #{type,jdbcType=INTEGER},
+      specification = #{specification,jdbcType=VARCHAR},
+      on_shelve = #{onShelve,jdbcType=BOOLEAN},
+      recommend_product_id = #{recommendProductId,jdbcType=INTEGER},
+      is_important = #{isImportant,jdbcType=BOOLEAN},
+      editer = #{editer,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=BOOLEAN},
+      add_dt = #{addDt,jdbcType=TIMESTAMP},
+      add_user_id = #{addUserId,jdbcType=INTEGER},
+      update_dt = #{updateDt,jdbcType=TIMESTAMP},
+      add_update_id = #{addUpdateId,jdbcType=INTEGER},
+      last_syndt = #{lastSyndt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

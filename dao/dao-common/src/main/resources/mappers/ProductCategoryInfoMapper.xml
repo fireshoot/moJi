@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.osyangxin.dao.mapper.ProductCategoryInfoMapper">
+  <resultMap id="BaseResultMap" type="com.osyangxin.dao.model.ProductCategoryInfo">
+    <!--@mbg.generated-->
+    <!--@Table product_category_info-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="ranking" jdbcType="INTEGER" property="ranking" />
+    <result column="status" jdbcType="SMALLINT" property="status" />
+    <result column="level" jdbcType="SMALLINT" property="level" />
+    <result column="origin_id" jdbcType="BIGINT" property="originId" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="mobile_logo_small" jdbcType="VARCHAR" property="mobileLogoSmall" />
+    <result column="mobile_logo_big" jdbcType="VARCHAR" property="mobileLogoBig" />
+    <result column="is_deleted" jdbcType="BOOLEAN" property="isDeleted" />
+    <result column="add_dt" jdbcType="TIMESTAMP" property="addDt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, `name`, description, ranking, `status`, `level`, origin_id, image, mobile_logo_small, 
+    mobile_logo_big, is_deleted, add_dt
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from product_category_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from product_category_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.osyangxin.dao.model.ProductCategoryInfo">
+    <!--@mbg.generated-->
+    insert into product_category_info (id, `name`, description, 
+      ranking, `status`, `level`, 
+      origin_id, image, mobile_logo_small, 
+      mobile_logo_big, is_deleted, add_dt
+      )
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{ranking,jdbcType=INTEGER}, #{status,jdbcType=SMALLINT}, #{level,jdbcType=SMALLINT}, 
+      #{originId,jdbcType=BIGINT}, #{image,jdbcType=VARCHAR}, #{mobileLogoSmall,jdbcType=VARCHAR}, 
+      #{mobileLogoBig,jdbcType=VARCHAR}, #{isDeleted,jdbcType=BOOLEAN}, #{addDt,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.osyangxin.dao.model.ProductCategoryInfo">
+    <!--@mbg.generated-->
+    insert into product_category_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="ranking != null">
+        ranking,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="level != null">
+        `level`,
+      </if>
+      <if test="originId != null">
+        origin_id,
+      </if>
+      <if test="image != null">
+        image,
+      </if>
+      <if test="mobileLogoSmall != null">
+        mobile_logo_small,
+      </if>
+      <if test="mobileLogoBig != null">
+        mobile_logo_big,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="addDt != null">
+        add_dt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="ranking != null">
+        #{ranking,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=SMALLINT},
+      </if>
+      <if test="originId != null">
+        #{originId,jdbcType=BIGINT},
+      </if>
+      <if test="image != null">
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileLogoSmall != null">
+        #{mobileLogoSmall,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileLogoBig != null">
+        #{mobileLogoBig,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=BOOLEAN},
+      </if>
+      <if test="addDt != null">
+        #{addDt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.osyangxin.dao.model.ProductCategoryInfo">
+    <!--@mbg.generated-->
+    update product_category_info
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="ranking != null">
+        ranking = #{ranking,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="level != null">
+        `level` = #{level,jdbcType=SMALLINT},
+      </if>
+      <if test="originId != null">
+        origin_id = #{originId,jdbcType=BIGINT},
+      </if>
+      <if test="image != null">
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileLogoSmall != null">
+        mobile_logo_small = #{mobileLogoSmall,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileLogoBig != null">
+        mobile_logo_big = #{mobileLogoBig,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=BOOLEAN},
+      </if>
+      <if test="addDt != null">
+        add_dt = #{addDt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.osyangxin.dao.model.ProductCategoryInfo">
+    <!--@mbg.generated-->
+    update product_category_info
+    set `name` = #{name,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      ranking = #{ranking,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=SMALLINT},
+      `level` = #{level,jdbcType=SMALLINT},
+      origin_id = #{originId,jdbcType=BIGINT},
+      image = #{image,jdbcType=VARCHAR},
+      mobile_logo_small = #{mobileLogoSmall,jdbcType=VARCHAR},
+      mobile_logo_big = #{mobileLogoBig,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=BOOLEAN},
+      add_dt = #{addDt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

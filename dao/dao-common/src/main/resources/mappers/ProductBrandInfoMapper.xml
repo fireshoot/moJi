@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.osyangxin.dao.mapper.ProductBrandInfoMapper">
+  <resultMap id="BaseResultMap" type="com.osyangxin.dao.model.ProductBrandInfo">
+    <!--@mbg.generated-->
+    <!--@Table product_brand_info-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="brand" jdbcType="VARCHAR" property="brand" />
+    <result column="is_deleted" jdbcType="BOOLEAN" property="isDeleted" />
+    <result column="add_dt" jdbcType="TIMESTAMP" property="addDt" />
+    <result column="update_dt" jdbcType="TIMESTAMP" property="updateDt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, brand, is_deleted, add_dt, update_dt
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from product_brand_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from product_brand_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.osyangxin.dao.model.ProductBrandInfo">
+    <!--@mbg.generated-->
+    insert into product_brand_info (id, brand, is_deleted, 
+      add_dt, update_dt)
+    values (#{id,jdbcType=BIGINT}, #{brand,jdbcType=VARCHAR}, #{isDeleted,jdbcType=BOOLEAN}, 
+      #{addDt,jdbcType=TIMESTAMP}, #{updateDt,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.osyangxin.dao.model.ProductBrandInfo">
+    <!--@mbg.generated-->
+    insert into product_brand_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="brand != null">
+        brand,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="addDt != null">
+        add_dt,
+      </if>
+      <if test="updateDt != null">
+        update_dt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="brand != null">
+        #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=BOOLEAN},
+      </if>
+      <if test="addDt != null">
+        #{addDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDt != null">
+        #{updateDt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.osyangxin.dao.model.ProductBrandInfo">
+    <!--@mbg.generated-->
+    update product_brand_info
+    <set>
+      <if test="brand != null">
+        brand = #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=BOOLEAN},
+      </if>
+      <if test="addDt != null">
+        add_dt = #{addDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDt != null">
+        update_dt = #{updateDt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.osyangxin.dao.model.ProductBrandInfo">
+    <!--@mbg.generated-->
+    update product_brand_info
+    set brand = #{brand,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=BOOLEAN},
+      add_dt = #{addDt,jdbcType=TIMESTAMP},
+      update_dt = #{updateDt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

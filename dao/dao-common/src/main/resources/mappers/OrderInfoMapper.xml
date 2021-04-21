@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.osyangxin.dao.mapper.OrderInfoMapper">
+  <resultMap id="BaseResultMap" type="com.osyangxin.dao.model.OrderInfo">
+    <!--@mbg.generated-->
+    <!--@Table order_info-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="order_user_id" jdbcType="BIGINT" property="orderUserId" />
+    <result column="source" jdbcType="VARCHAR" property="source" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="status" jdbcType="SMALLINT" property="status" />
+    <result column="product_price" jdbcType="DECIMAL" property="productPrice" />
+    <result column="discount_price" jdbcType="DECIMAL" property="discountPrice" />
+    <result column="refund_price" jdbcType="DECIMAL" property="refundPrice" />
+    <result column="postage" jdbcType="DECIMAL" property="postage" />
+    <result column="should_pay_price" jdbcType="DECIMAL" property="shouldPayPrice" />
+    <result column="product_count" jdbcType="INTEGER" property="productCount" />
+    <result column="payment_price" jdbcType="DECIMAL" property="paymentPrice" />
+    <result column="payment_method" jdbcType="VARCHAR" property="paymentMethod" />
+    <result column="payment_time" jdbcType="TIMESTAMP" property="paymentTime" />
+    <result column="payment_no" jdbcType="VARCHAR" property="paymentNo" />
+    <result column="order_refund_dt" jdbcType="TIMESTAMP" property="orderRefundDt" />
+    <result column="is_deleted" jdbcType="BOOLEAN" property="isDeleted" />
+    <result column="cancel_reason" jdbcType="VARCHAR" property="cancelReason" />
+    <result column="finish_dt" jdbcType="TIMESTAMP" property="finishDt" />
+    <result column="add_dt" jdbcType="TIMESTAMP" property="addDt" />
+    <result column="update_dt" jdbcType="TIMESTAMP" property="updateDt" />
+    <result column="supplier_order_status" jdbcType="VARCHAR" property="supplierOrderStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, order_user_id, `source`, order_no, `status`, product_price, discount_price, refund_price, 
+    postage, should_pay_price, product_count, payment_price, payment_method, payment_time, 
+    payment_no, order_refund_dt, is_deleted, cancel_reason, finish_dt, add_dt, update_dt, 
+    supplier_order_status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from order_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from order_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.osyangxin.dao.model.OrderInfo">
+    <!--@mbg.generated-->
+    insert into order_info (id, order_user_id, `source`, 
+      order_no, `status`, product_price, 
+      discount_price, refund_price, postage, 
+      should_pay_price, product_count, payment_price, 
+      payment_method, payment_time, payment_no, 
+      order_refund_dt, is_deleted, cancel_reason, 
+      finish_dt, add_dt, update_dt, 
+      supplier_order_status)
+    values (#{id,jdbcType=BIGINT}, #{orderUserId,jdbcType=BIGINT}, #{source,jdbcType=VARCHAR}, 
+      #{orderNo,jdbcType=VARCHAR}, #{status,jdbcType=SMALLINT}, #{productPrice,jdbcType=DECIMAL}, 
+      #{discountPrice,jdbcType=DECIMAL}, #{refundPrice,jdbcType=DECIMAL}, #{postage,jdbcType=DECIMAL}, 
+      #{shouldPayPrice,jdbcType=DECIMAL}, #{productCount,jdbcType=INTEGER}, #{paymentPrice,jdbcType=DECIMAL}, 
+      #{paymentMethod,jdbcType=VARCHAR}, #{paymentTime,jdbcType=TIMESTAMP}, #{paymentNo,jdbcType=VARCHAR}, 
+      #{orderRefundDt,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=BOOLEAN}, #{cancelReason,jdbcType=VARCHAR}, 
+      #{finishDt,jdbcType=TIMESTAMP}, #{addDt,jdbcType=TIMESTAMP}, #{updateDt,jdbcType=TIMESTAMP}, 
+      #{supplierOrderStatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.osyangxin.dao.model.OrderInfo">
+    <!--@mbg.generated-->
+    insert into order_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="orderUserId != null">
+        order_user_id,
+      </if>
+      <if test="source != null">
+        `source`,
+      </if>
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="productPrice != null">
+        product_price,
+      </if>
+      <if test="discountPrice != null">
+        discount_price,
+      </if>
+      <if test="refundPrice != null">
+        refund_price,
+      </if>
+      <if test="postage != null">
+        postage,
+      </if>
+      <if test="shouldPayPrice != null">
+        should_pay_price,
+      </if>
+      <if test="productCount != null">
+        product_count,
+      </if>
+      <if test="paymentPrice != null">
+        payment_price,
+      </if>
+      <if test="paymentMethod != null">
+        payment_method,
+      </if>
+      <if test="paymentTime != null">
+        payment_time,
+      </if>
+      <if test="paymentNo != null">
+        payment_no,
+      </if>
+      <if test="orderRefundDt != null">
+        order_refund_dt,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="cancelReason != null">
+        cancel_reason,
+      </if>
+      <if test="finishDt != null">
+        finish_dt,
+      </if>
+      <if test="addDt != null">
+        add_dt,
+      </if>
+      <if test="updateDt != null">
+        update_dt,
+      </if>
+      <if test="supplierOrderStatus != null">
+        supplier_order_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orderUserId != null">
+        #{orderUserId,jdbcType=BIGINT},
+      </if>
+      <if test="source != null">
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="productPrice != null">
+        #{productPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="discountPrice != null">
+        #{discountPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="refundPrice != null">
+        #{refundPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="postage != null">
+        #{postage,jdbcType=DECIMAL},
+      </if>
+      <if test="shouldPayPrice != null">
+        #{shouldPayPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="productCount != null">
+        #{productCount,jdbcType=INTEGER},
+      </if>
+      <if test="paymentPrice != null">
+        #{paymentPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="paymentMethod != null">
+        #{paymentMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentTime != null">
+        #{paymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paymentNo != null">
+        #{paymentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderRefundDt != null">
+        #{orderRefundDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=BOOLEAN},
+      </if>
+      <if test="cancelReason != null">
+        #{cancelReason,jdbcType=VARCHAR},
+      </if>
+      <if test="finishDt != null">
+        #{finishDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addDt != null">
+        #{addDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDt != null">
+        #{updateDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="supplierOrderStatus != null">
+        #{supplierOrderStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.osyangxin.dao.model.OrderInfo">
+    <!--@mbg.generated-->
+    update order_info
+    <set>
+      <if test="orderUserId != null">
+        order_user_id = #{orderUserId,jdbcType=BIGINT},
+      </if>
+      <if test="source != null">
+        `source` = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="productPrice != null">
+        product_price = #{productPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="discountPrice != null">
+        discount_price = #{discountPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="refundPrice != null">
+        refund_price = #{refundPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="postage != null">
+        postage = #{postage,jdbcType=DECIMAL},
+      </if>
+      <if test="shouldPayPrice != null">
+        should_pay_price = #{shouldPayPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="productCount != null">
+        product_count = #{productCount,jdbcType=INTEGER},
+      </if>
+      <if test="paymentPrice != null">
+        payment_price = #{paymentPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="paymentMethod != null">
+        payment_method = #{paymentMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentTime != null">
+        payment_time = #{paymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paymentNo != null">
+        payment_no = #{paymentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderRefundDt != null">
+        order_refund_dt = #{orderRefundDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=BOOLEAN},
+      </if>
+      <if test="cancelReason != null">
+        cancel_reason = #{cancelReason,jdbcType=VARCHAR},
+      </if>
+      <if test="finishDt != null">
+        finish_dt = #{finishDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addDt != null">
+        add_dt = #{addDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDt != null">
+        update_dt = #{updateDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="supplierOrderStatus != null">
+        supplier_order_status = #{supplierOrderStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.osyangxin.dao.model.OrderInfo">
+    <!--@mbg.generated-->
+    update order_info
+    set order_user_id = #{orderUserId,jdbcType=BIGINT},
+      `source` = #{source,jdbcType=VARCHAR},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=SMALLINT},
+      product_price = #{productPrice,jdbcType=DECIMAL},
+      discount_price = #{discountPrice,jdbcType=DECIMAL},
+      refund_price = #{refundPrice,jdbcType=DECIMAL},
+      postage = #{postage,jdbcType=DECIMAL},
+      should_pay_price = #{shouldPayPrice,jdbcType=DECIMAL},
+      product_count = #{productCount,jdbcType=INTEGER},
+      payment_price = #{paymentPrice,jdbcType=DECIMAL},
+      payment_method = #{paymentMethod,jdbcType=VARCHAR},
+      payment_time = #{paymentTime,jdbcType=TIMESTAMP},
+      payment_no = #{paymentNo,jdbcType=VARCHAR},
+      order_refund_dt = #{orderRefundDt,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=BOOLEAN},
+      cancel_reason = #{cancelReason,jdbcType=VARCHAR},
+      finish_dt = #{finishDt,jdbcType=TIMESTAMP},
+      add_dt = #{addDt,jdbcType=TIMESTAMP},
+      update_dt = #{updateDt,jdbcType=TIMESTAMP},
+      supplier_order_status = #{supplierOrderStatus,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
